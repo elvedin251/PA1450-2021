@@ -5,6 +5,7 @@ from argparse import ArgumentParser
 from application.commands import serve, greet
 
 def main():
+    
     """Main method of the application."""
     # Create an argument parser for parsing CLI arguments
     parser = ArgumentParser(description="An example application")
