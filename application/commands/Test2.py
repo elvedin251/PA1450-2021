@@ -30,16 +30,43 @@ def get_total_cases(time):
     df = pd.read_csv(path +time + ".csv")
     df = (df.loc[:, ['Country_Region', 'Confirmed']])
     df = df.sort_values("Confirmed")
-    print(df)
+    df.to_csv(r'testxd', header=None, index=None, sep=' ', mode='a')
 
-def get_new_cases(new_cases_df):
 
+
+def get_new_cases(day1,day2):
+    df1 = pd.read_csv(path +day1+ ".csv")
+    df2 = pd.read_csv(path + day2 + ".csv")
+    gdf1 = (df1.loc[:, ['Country_Region', 'Confirmed', 'Deaths']])
+    names = (df1.loc[:, ['Country_Region']])
+    gdf2 = (df2.loc[:, ['Country_Region', 'Confirmed', 'Deaths']])
+
+
+    gdf2.rename(columns = {'Confirmed' : 'Confirmed2'}, inplace = True)
+
+
+    gdf3 = pd.concat([gdf1, gdf2], axis = 1)
+
+    new_cases_df = gdf3["Confirmed"] - gdf2["Confirmed2"]
+
+    new_cases_df = new_cases_df.sort_values()
+    
+    print(new_cases_df)
     pass
 
+get_total_cases("10-10-2020")
+print(get_new_cases("10-11-2020", "10-10-2020"))
 
-def getinfo
+def get_data():
+    f = open("/home/pa1450/PA1450-2021/testxd", "r")
+    split = f.readlines()
+    
+    return split
 
-get_total_cases("11-05-2020")
+def get_data2():
+    pass
+
+get_data()
 #print(gdf3.to_string)
 
 #df3 = pd.concat([df1, df2])
