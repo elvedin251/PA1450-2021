@@ -1,7 +1,9 @@
 """Module for serving an API."""
 from application.commands.Test2 import get_total_cases
 from application.commands.Test2 import get_new_cases
-from application.commands.Test2 import get_data
+from application.commands.Test2 import get_data, get_data2, get_data3, get_sweden_cases
+
+
 from flask import Flask, send_file, redirect, url_for, render_template, request
 
 def serve(options):
@@ -21,7 +23,11 @@ def serve(options):
 
     @app.route("/newcases")
     def newcasesyeet():
-        return render_template("newcase.html", content= get_date2())
+        return render_template("newcase.html", content= get_data2())
+
+    @app.route("/swedencases")
+    def swedencasesyeet():
+        return render_template("sweden.html")
 
     @app.route("/greeting/<name>")
     def greeting(name):
@@ -31,15 +37,28 @@ def serve(options):
     @app.route("/", methods=["POST", "GET"])
     def totalc():
         
+        data = request.form["choose-data"]
         date = request.form["date"]
+        date2 = request.form["date2"]
+        if data == "total":
+            get_total_cases(date)
+            return totalcasesyeet()
+        elif data == "new":
+            get_new_cases(date, date2)
+            return newcasesyeet()
+        else:
+            get_sweden_cases(date)
+            return swedencasesyeet()
         
-        get_total_cases(date)
-            
-        return totalcasesyeet()
 
     @app.route("/", methods=["POST", "GET"])
     def newc(date):
-        pass
+        date1 = request.form["date1"]
+        date2 = request.form["date2"]
+        
+        get_new_cases(date1, date2)
+            
+        return newcasesyeet()
 
 
     app.run(host=options.address, port=options.port, debug=True)

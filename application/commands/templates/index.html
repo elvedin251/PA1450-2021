@@ -4,30 +4,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="PA1450-2021/application/commands/templates/mystyle.css">
+
   <title>PA1450</title>
   <meta name="description" content="PA1450"/>
 </head>
 <body>
+  
+  <style>
+    
+    h1 { color: #fff;
+      text-align: center; }
+    body { background-color: #222222; }
+    h1 { color: #fff; 
+    text-align: center;}
+    h2 { color: #fff;
+      text-align: center; }
+    form { color: #fff; 
+      text-align: center;}
+</style>
   <h1>CovidCenter</h1>
-  <h2>Total cases</h2>  
 
   <h2>Enter date you want to see below:</h2>
   <form action="{{ url_for('totalc') }}" method="post">
-  <label for="fname">First date: Example: "10-12-2020"</label><br>
-    <input type="text" id="fname" name="date"><br>
-    <input type="submit" value="submit" ><br>
+    
+  <label for="choose-data1"></label><br>
+  <input class="form-check-input" value="total" type="radio" id="total-data" name="choose-data"> Total cases
+
+  <label for="choose-data2"></label><br>
+  <input class="form-check-input" value="new" type="radio" id="new-data" name="choose-data"> New Cases
+  <label for="choose-data3"></label><br>
+
+  <input class="form-check-input" value="sweden" type="radio" id="total-data" name="choose-data"> Sweden cases <br></br>
+  <input type="text" id="date" name="date"><br>
+  <input type="text" id="date2" name="date2"><br>
+
+
+
+  <input type="submit"  value="submit" ><br>
   </form>
-
-  <h2>New cases</h2>
-  <h2>Enter date you want to see below:</h2>
-  <form action="{{ url_for('newc') }}" method="post">
-
-    <label for="fname">First date: Example: "10-12-2020"</label><br>
-      <input type="text" id="fname" name="date1"><br>
-      <input type="text" id="fname" name="date2"><br>
-      <input type="submit" value="submit" ><br>
-    </form>
-
 
 </body>
 </html>
